@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="">
-        main content
+        main content here
       </main>
     </>
   );
