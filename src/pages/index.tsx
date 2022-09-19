@@ -8,6 +8,7 @@ const Home: NextPage = () => {
   return (
     <>
       Main page { hello.data?.greeting }
+      <br />
       Some test data: { JSON.stringify(test.data) }
     </>
   );

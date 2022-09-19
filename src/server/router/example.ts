@@ -18,8 +18,8 @@ export const exampleRouter = createRouter()
     input: z.object({
       someData: z.string()
     }),
-    resolve({ input, ctx }) {
-      const someData = ctx.prisma.example.findFirst()
+    async resolve({ input, ctx }) {
+      const someData = await ctx.prisma.example.findFirst()
       return {
         ...someData,
         customKey: input
