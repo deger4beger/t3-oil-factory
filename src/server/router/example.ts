@@ -14,6 +14,18 @@ export const exampleRouter = createRouter()
       };
     },
   })
+  .query("test", {
+    input: z.object({
+      someData: z.string()
+    }),
+    resolve({ input, ctx }) {
+      const someData = ctx.prisma.example.findFirst()
+      return {
+        ...someData,
+        customKey: input
+      }
+    }
+  })
   .query("getAll", {
     async resolve({ ctx }) {
       return await ctx.prisma.example.findMany();
