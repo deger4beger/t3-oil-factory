@@ -2,9 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 
 const routes = [
-	{ name: "Страница учителя", route: "/teacher" },
-	{ name: "Страница студента", route: "/student" },
-	{ name: "Помощь по сайту", route: "/help" }
+	{ name: "Страница 1", route: "/1" },
+	{ name: "Страница 2", route: "/2" },
+	{ name: "Страница 3", route: "/3" }
 ]
 
 const PageShell = ({
