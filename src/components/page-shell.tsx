@@ -1,4 +1,4 @@
-import { signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -94,16 +94,12 @@ const AuthHandler = ({
 
 const AuthPanel = () => {
 
-	const { data, status } = useSession();
-
-	if (status !== "authenticated") {
-		return <div />
-	}
+	const { status } = useSession();
 
 	return (
 		<div className="flex items-center">
-			<div className="mr-4">{ data?.user?.email }</div>
-			<button onClick={() => signOut()}>Выйти</button>
+			{ status === "authenticated" && <button onClick={() => signOut()}>Выйти</button> }
+			{ status === "unauthenticated" && <button onClick={() => signIn()}>Войти</button> }
 		</div>
 	)
 }
