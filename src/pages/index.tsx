@@ -5,7 +5,7 @@ import PageShell from "../components/page-shell";
 const Home: NextPage = () => {
 
   return (
-    <PageShell title="Home" isProtected={true}>
+    <PageShell title="Home">
       Home page
     </PageShell>
   );

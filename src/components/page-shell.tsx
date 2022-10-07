@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 import { UserContext } from "../hooks/useUser";
 
 const routes = [
-	{ name: "Страница 1", route: "/1" },
-	{ name: "Страница 2", route: "/2" },
-	{ name: "Страница 3", route: "/3" }
+	{ name: "Закупки", route: "/purchases" },
+	{ name: "Продажи", route: "/sales" },
+	{ name: "Статистика", route: "/statistics" }
 ]
 
 const PageShell = ({
@@ -17,7 +17,7 @@ const PageShell = ({
 }: {
 	children: React.ReactNode;
 	title: string;
-	isProtected: boolean
+	isProtected?: boolean
 }) => {
 
 	return (
@@ -33,7 +33,9 @@ const PageShell = ({
 	      	<div className="m-auto w-7/12 flex justify-between">
 	      	 	<div className="flex">
 	      	 		<h1 className="text-lg cursor-pointer font-medium border-2 px-2 rounded hover:text-sky-300 hover:border-sky-300">
-				        ⊙il-gas
+				        <Link href="/">
+				        	⊙il-gas
+				        </Link>
 				      </h1>
 				      <div className="flex">
 					      { routes.map(({ name, route }) =>
