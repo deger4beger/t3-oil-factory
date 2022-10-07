@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { UserContext } from "../hooks/useUser";
+import Button from "./button";
 
 const routes = [
 	{ name: "Закупки", route: "/purchases" },
@@ -32,14 +33,14 @@ const PageShell = ({
 	      <nav className="bg-zinc-800 p-3 text-zinc-50">
 	      	<div className="m-auto w-7/12 flex justify-between">
 	      	 	<div className="flex">
-	      	 		<h1 className="text-lg cursor-pointer font-medium border-2 px-2 rounded hover:text-sky-300 hover:border-sky-300">
+	      	 		<h1 className="text-lg cursor-pointer font-medium border-2 px-2 rounded hover:text-emerald-200 hover:border-emerald-200 h-8">
 				        <Link href="/">
 				        	⊙il-gas
 				        </Link>
 				      </h1>
 				      <div className="flex">
 					      { routes.map(({ name, route }) =>
-				      		<div key={ name } className="ml-3 text-sm hover:text-zinc-300 cursor-pointer font-medium flex items-center first:ml-10">
+				      		<div key={ name } className="ml-3 text-sm hover:text-zinc-300 cursor-pointer font-medium flex items-center first:ml-6">
 				      			<Link href={route}>
 				      				{ name }
 				      			</Link>
@@ -98,8 +99,8 @@ const AuthPanel = () => {
 
 	return (
 		<div className="flex items-center">
-			{ status === "authenticated" && <button onClick={() => signOut()}>Выйти</button> }
-			{ status === "unauthenticated" && <button onClick={() => signIn()}>Войти</button> }
+			{ status === "authenticated" && <Button text="Выйти" onClick={() => signOut()} /> }
+			{ status === "unauthenticated" && <Button text="Войти" onClick={() => signIn()} /> }
 		</div>
 	)
 }
