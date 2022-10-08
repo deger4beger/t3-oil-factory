@@ -14,7 +14,7 @@ const Button = ({
 		"bg-zinc-700 border-zinc-600"
 
 	return (
-		<button className={ "p-2 px-4 rounded border-[1px] " + styles } onClick={onClick}>
+		<button className={ "p-2 px-4 rounded font-semibold border-[1px] " + styles } onClick={onClick}>
 			{ text }
 		</button>
 	)

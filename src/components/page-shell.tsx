@@ -78,11 +78,11 @@ const AuthHandler = ({
 	const { data, status } = useSession();
 	const router = useRouter()
 
-	if (status === "loading") {
+	if (isProtected && status === "loading") {
 		return <div>Загрузка...</div>
 	}
 
-	if (isProtected && !data) {
+	if (isProtected && status === "unauthenticated") {
 		router.push("/api/auth/signin")
 	}
 
@@ -99,6 +99,7 @@ const AuthPanel = () => {
 
 	return (
 		<div className="flex items-center">
+			{ status === "loading" && <div>Загрузка...</div> }
 			{ status === "authenticated" && <Button style="coloured" text="Выйти" onClick={() => signOut()} /> }
 			{ status === "unauthenticated" && <Button style="coloured" text="Войти" onClick={() => signIn()} /> }
 		</div>
