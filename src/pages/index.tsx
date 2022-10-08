@@ -6,7 +6,9 @@ const Home: NextPage = () => {
 
   return (
     <PageShell title="Home">
-      Home page
+      {/*
+        ## TODO: Some bright description, video demo, link to auth and use app
+      */}
     </PageShell>
   );
 };
