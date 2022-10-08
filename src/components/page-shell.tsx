@@ -32,8 +32,8 @@ const PageShell = ({
       <AuthHandler protected={ isProtected }>
 	      <nav className="bg-zinc-800 p-3 text-zinc-50">
 	      	<div className="m-auto w-7/12 flex justify-between">
-	      	 	<div className="flex">
-	      	 		<h1 className="text-lg cursor-pointer font-medium border-2 px-2 rounded hover:text-emerald-300 hover:border-emerald-300 h-8">
+	      	 	<div className="flex items-center">
+	      	 		<h1 className="text-lg cursor-pointer font-medium border-b-2 px-2 hover:text-emerald-300 hover:border-emerald-300">
 				        <Link href="/">
 				        	⊙il-gas
 				        </Link>
