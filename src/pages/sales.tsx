@@ -5,7 +5,7 @@ import PageShell from "../components/page-shell"
 
 const Sales: NextPage = () => {
 	return (
-		<PageShell title="Закупки" isProtected>
+		<PageShell title="Продажи" isProtected>
 			Sales
 		</PageShell>
 	)

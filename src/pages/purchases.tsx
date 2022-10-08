@@ -11,7 +11,6 @@ const Purchases: NextPage = () => {
 	return (
 		<PageShell title="Закупки" isProtected>
 			Страница закупок сырья
-			User info: {JSON.stringify(data?.user)}
 		</PageShell>
 	)
 }

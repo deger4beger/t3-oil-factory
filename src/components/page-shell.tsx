@@ -6,7 +6,7 @@ import { UserContext } from "../hooks/useUser";
 import Button from "./button";
 
 const routes = [
-	{ name: "Стартовая страница", route: "/" },
+	{ name: "Домашняя страница", route: "/" },
 	{ name: "Закупки", route: "/purchases" },
 	{ name: "Продажи", route: "/sales" },
 	{ name: "Статистика", route: "/statistics" }
@@ -38,7 +38,7 @@ const PageShell = ({
 	      	 	<div className="flex items-center">
 				      <div className="flex">
 					      { routes.map(({ name, route }) =>
-				      		<div key={ name } className={ "ml-4 first:ml-0 text-sm hover:text-zinc-300 cursor-pointer font-medium flex items-center" + ( router.pathname === route ? " text-zinc-400 hover:text-zinc-400" : "" ) }>
+				      		<div key={ name } className={ "ml-4 first:mr-6 first:ml-0 text-sm hover:text-zinc-300 cursor-pointer font-medium flex items-center" + ( router.pathname === route ? " text-zinc-400 hover:text-zinc-400" : "" ) }>
 				      			<Link href={route}>
 				      				{ name }
 				      			</Link>

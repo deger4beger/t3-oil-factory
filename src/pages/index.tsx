@@ -5,7 +5,7 @@ import PageShell from "../components/page-shell";
 const Home: NextPage = () => {
 
   return (
-    <PageShell title="Home">
+    <PageShell title="Домашняя страница">
       {/*
         ## TODO: Some bright description, video demo, link to auth and use app
       */}
