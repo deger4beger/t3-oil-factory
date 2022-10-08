@@ -10,7 +10,7 @@ const Button = ({
 	style?: "coloured" | "standard"
 }) => {
 
-	const styles = style === "coloured" ? "bg-emerald-600 hover:bg-emerald-700 border-emerald-700" :
+	const styles = style === "coloured" ? "bg-emerald-700 hover:bg-emerald-800 border-emerald-800" :
 		"bg-zinc-700 border-zinc-600"
 
 	return (
