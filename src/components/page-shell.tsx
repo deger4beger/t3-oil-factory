@@ -38,7 +38,7 @@ const PageShell = ({
 	      	 	<div className="flex items-center">
 				      <div className="flex">
 					      { routes.map(({ name, route }) =>
-				      		<div key={ name } className={ "ml-3 text-sm hover:text-zinc-300 cursor-pointer font-medium flex items-center" + ( router.pathname === route ? " text-zinc-400 hover:text-zinc-400" : "" ) }>
+				      		<div key={ name } className={ "ml-4 first:ml-0 text-sm hover:text-zinc-300 cursor-pointer font-medium flex items-center" + ( router.pathname === route ? " text-zinc-400 hover:text-zinc-400" : "" ) }>
 				      			<Link href={route}>
 				      				{ name }
 				      			</Link>
@@ -51,7 +51,7 @@ const PageShell = ({
 	      </nav>
 
 	      <main className="min-w-max min-h-screen bg-zinc-900 text-zinc-50">
-	      	<div className="m-auto w-7/12 p-3 pt-6">
+	      	<div className="m-auto w-7/12 p-2 pt-6">
 	        	{ children }
 	        </div>
 	      </main>
