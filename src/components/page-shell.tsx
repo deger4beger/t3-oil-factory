@@ -100,8 +100,10 @@ const AuthPanel = () => {
 	return (
 		<div className="flex items-center">
 			{ status === "loading" && <div>Загрузка...</div> }
-			{ status === "authenticated" && <Button style="coloured" text="Выйти" onClick={() => signOut()} /> }
-			{ status === "unauthenticated" && <Button style="coloured" text="Войти" onClick={() => signIn()} /> }
+			{ status === "authenticated" && <Button text="Выйти" onClick={() => signOut({
+				callbackUrl: "http://localhost:3000"
+			})} /> }
+			{ status === "unauthenticated" && <Button style="light" text="Войти" onClick={() => signIn()} /> }
 		</div>
 	)
 }

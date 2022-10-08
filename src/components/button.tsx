@@ -7,14 +7,14 @@ const Button = ({
 }: {
 	onClick: () => void;
 	text: string;
-	style?: "coloured" | "standard"
+	style?: "light" | "standard"
 }) => {
 
-	const styles = style === "coloured" ? "bg-emerald-700 hover:bg-emerald-800 border-emerald-800" :
+	const styles = style === "light" ? "bg-zinc-300 text-zinc-900" :
 		"bg-zinc-700 border-zinc-600"
 
 	return (
-		<button className={ "p-2 px-4 rounded font-semibold border-[1px] " + styles } onClick={onClick}>
+		<button className={ "p-1 px-4 rounded font-semibold border-[1px] " + styles } onClick={onClick}>
 			{ text }
 		</button>
 	)
