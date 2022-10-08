@@ -6,6 +6,7 @@ import { UserContext } from "../hooks/useUser";
 import Button from "./button";
 
 const routes = [
+	{ name: "Стартовая страница", route: "/" },
 	{ name: "Закупки", route: "/purchases" },
 	{ name: "Продажи", route: "/sales" },
 	{ name: "Статистика", route: "/statistics" }
@@ -21,6 +22,8 @@ const PageShell = ({
 	isProtected?: boolean
 }) => {
 
+	const router = useRouter()
+
 	return (
 		<>
       <Head>
@@ -33,14 +36,9 @@ const PageShell = ({
 	      <nav className="bg-zinc-800 p-3 text-zinc-50">
 	      	<div className="m-auto w-7/12 flex justify-between">
 	      	 	<div className="flex items-center">
-	      	 		<h1 className="text-lg cursor-pointer font-medium border-b-2 px-2 hover:text-emerald-300 hover:border-emerald-300">
-				        <Link href="/">
-				        	⊙il-gas
-				        </Link>
-				      </h1>
 				      <div className="flex">
 					      { routes.map(({ name, route }) =>
-				      		<div key={ name } className="ml-3 text-sm hover:text-zinc-300 cursor-pointer font-medium flex items-center first:ml-6">
+				      		<div key={ name } className={ "ml-3 text-sm hover:text-zinc-300 cursor-pointer font-medium flex items-center" + ( router.pathname === route ? " text-zinc-400 hover:text-zinc-400" : "" ) }>
 				      			<Link href={route}>
 				      				{ name }
 				      			</Link>
@@ -101,7 +99,7 @@ const AuthPanel = () => {
 		<div className="flex items-center">
 			{ status === "loading" && <div>Загрузка...</div> }
 			{ status === "authenticated" && <Button text="Выйти" onClick={() => signOut({
-				callbackUrl: "http://localhost:3000"
+				callbackUrl: "http://localhost:3000" // ## TODO: move url to .env
 			})} /> }
 			{ status === "unauthenticated" && <Button style="light" text="Войти" onClick={() => signIn()} /> }
 		</div>
