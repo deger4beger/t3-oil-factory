@@ -1,9 +1,8 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { UserContext } from "../hooks/useUser";
 import Button from "./button";
+import { useRouter } from "next/router";
 
 const routes = [
 	{ name: "Домашняя страница", route: "/" },
@@ -55,7 +54,7 @@ const PageShell = ({
 	        </div>
 	      </main>
 	      <footer className="bg-zinc-900 p-3 text-zinc-400 text-sm flex justify-end pr-6">
-	      	© 2022, oil-gas
+	      	© 2022, oil-factory
 	      </footer>
       </AuthMiddleware>
     </>
