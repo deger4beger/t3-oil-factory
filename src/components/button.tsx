@@ -1,11 +1,11 @@
 import React from "react"
 
 const Button = ({
-	onClick,
+	onClick=() => void 0,
 	text,
 	style="standard"
 }: {
-	onClick: () => void;
+	onClick?: () => void;
 	text: string;
 	style?: "light" | "standard"
 }) => {
