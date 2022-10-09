@@ -32,7 +32,7 @@ const PageShell = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <AuthHandler protected={ isProtected }>
+      <AuthMiddleware protected={ isProtected }>
 	      <nav className="bg-zinc-800 p-3 text-zinc-50">
 	      	<div className="m-auto w-7/12 flex justify-between">
 	      	 	<div className="flex items-center">
@@ -49,23 +49,20 @@ const PageShell = ({
 			      <AuthPanel />
 		      </div>
 	      </nav>
-
 	      <main className="min-w-max min-h-screen bg-zinc-900 text-zinc-50">
 	      	<div className="m-auto w-7/12 p-2 pt-6">
 	        	{ children }
 	        </div>
 	      </main>
-
 	      <footer className="bg-zinc-900 p-3 text-zinc-400 text-sm flex justify-end pr-6">
 	      	© 2022, oil-gas
 	      </footer>
-      </AuthHandler>
-
+      </AuthMiddleware>
     </>
 	)
 }
 
-const AuthHandler = ({
+const AuthMiddleware = ({
 	protected: isProtected,
 	children
 }: {
@@ -73,22 +70,17 @@ const AuthHandler = ({
 	children: React.ReactNode;
 }) => {
 
-	const { data, status } = useSession();
+	const { status } = useSession();
 	const router = useRouter()
 
 	if (isProtected && status === "loading") {
 		return <div>Загрузка...</div>
 	}
-
 	if (isProtected && status === "unauthenticated") {
 		router.push("/api/auth/signin")
 	}
 
-	return (
-		<UserContext.Provider value={data?.user}>
-			{ children }
-		</UserContext.Provider>
-	)
+	return <> { children } </>
 }
 
 const AuthPanel = () => {
