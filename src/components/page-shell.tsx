@@ -89,9 +89,16 @@ const AuthPanel = () => {
 	return (
 		<div className="flex items-center">
 			{ status === "loading" && <div>Загрузка...</div> }
-			{ status === "authenticated" && <Button text="Выйти" onClick={() => signOut({
-				callbackUrl: "http://localhost:3000" // ## TODO: move url to .env
-			})} /> }
+			{ status === "authenticated" && <>
+				<div className="mr-2">
+					<Link href="/cabinet">
+						<Button style="light" text="🗝" />
+					</Link>
+				</div>
+				<Button text="Выйти" onClick={() => signOut({
+					callbackUrl: "http://localhost:3000" // ## TODO: move url to .env
+				})} />
+			</> }
 			{ status === "unauthenticated" && <Button style="light" text="Войти" onClick={() => signIn()} /> }
 		</div>
 	)
