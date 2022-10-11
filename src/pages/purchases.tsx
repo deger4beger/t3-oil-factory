@@ -24,6 +24,10 @@ const Purchases: NextPage = () => {
 		})
 	}
 
+	const onCreateNewPurchase = () => {
+		console.log(purchasePayload)
+	}
+
 	return (
 		<PageShell title="Закупки" isProtected>
 			<GroupControl title="Ваши закупки">
@@ -40,6 +44,7 @@ const Purchases: NextPage = () => {
 				successBtn={
 					<Button
 						text="Подтвердить"
+						onClick={ onCreateNewPurchase }
 					/>
 				}
 			>
