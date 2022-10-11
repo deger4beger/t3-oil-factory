@@ -1,16 +1,17 @@
-import { NextPage } from "next"
-import { useSession } from "next-auth/react"
 import React from "react"
+import { NextPage } from "next"
+import GroupControl from "../components/group-control"
 import PageShell from "../components/page-shell"
+import Button from "../components/button"
 
 
 const Purchases: NextPage = () => {
 
-	const { data } = useSession()
-
 	return (
 		<PageShell title="Закупки" isProtected>
-			Страница закупок сырья
+			<GroupControl title="Ваши закупки">
+				<Button text="+ Оформить новую закупку" style="light" />
+			</GroupControl>
 		</PageShell>
 	)
 }
