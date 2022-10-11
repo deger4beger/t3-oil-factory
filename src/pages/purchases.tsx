@@ -10,6 +10,19 @@ import InputDatalist from "../components/input-datalist"
 const Purchases: NextPage = () => {
 
 	const [isCreatingNewPurchase, setIsCreatingNewPurchase] = useState(false)
+	const [purchasePayload, setPurchasePayload] = useState({
+		name: "",
+		price: "",
+		count: "",
+		date: ""
+	})
+
+	const onSetPurchasePayload = (field: string) => (value: string) => {
+		setPurchasePayload({
+			...purchasePayload,
+			[field]: value
+		})
+	}
 
 	return (
 		<PageShell title="Закупки" isProtected>
@@ -30,8 +43,27 @@ const Purchases: NextPage = () => {
 					/>
 				}
 			>
-				<InputDatalist />
-				<InputDatalist />
+				<InputDatalist
+					title="Название закупки"
+					value={ purchasePayload.name }
+					onChange={ onSetPurchasePayload("name") }
+				/>
+				<InputDatalist
+					title="Цена"
+					value={ purchasePayload.price }
+					onChange={ onSetPurchasePayload("price") }
+				/>
+				<InputDatalist
+					title="Количество"
+					value={ purchasePayload.count }
+					onChange={ onSetPurchasePayload("count") }
+				/>
+				<InputDatalist
+					title="Дата"
+					value={ purchasePayload.date }
+					onChange={ onSetPurchasePayload("date") }
+					type="date"
+				/>
 			</Modal>
 		</PageShell>
 	)
