@@ -4,6 +4,7 @@ import GroupControl from "../components/group-control"
 import PageShell from "../components/page-shell"
 import Button from "../components/button"
 import Modal from "../components/modal"
+import InputDatalist from "../components/input-datalist"
 
 
 const Purchases: NextPage = () => {
@@ -29,6 +30,8 @@ const Purchases: NextPage = () => {
 					/>
 				}
 			>
+				<InputDatalist />
+				<InputDatalist />
 			</Modal>
 		</PageShell>
 	)

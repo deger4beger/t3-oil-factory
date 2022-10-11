@@ -39,7 +39,7 @@ const Modal = ({
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
+                  <p className="text-slate-500 text-lg leading-relaxed">
                     { children }
                   </p>
                 </div>
