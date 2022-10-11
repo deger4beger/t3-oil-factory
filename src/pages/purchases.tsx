@@ -22,7 +22,7 @@ const Purchases: NextPage = () => {
 			<Modal
 				showModal={isCreatingNewPurchase}
 				setShowModal={setIsCreatingNewPurchase}
-				title="Офоормление новой закупки"
+				title="Оформление новой закупки"
 				successBtn={
 					<Button
 						text="Подтвердить"
