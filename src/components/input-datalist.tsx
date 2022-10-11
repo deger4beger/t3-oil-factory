@@ -25,7 +25,7 @@ const InputDatalist = ({
 				name="name"
 				list="purchase-name"
 				placeholder="..."
-				className="bg-zinc-300 border-b-2 border-zinc-600 text-zinc-900 px-2 text-base mb-4 w-full"
+				className="bg-zinc-300 border-b-2 border-zinc-600 text-zinc-900 px-2 text-base mb-4 w-11/12"
 			/>
 		    { datalist && (
 		    	<datalist id="purchase-name">
