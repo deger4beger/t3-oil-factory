@@ -1,11 +1,11 @@
 import React from "react"
 
-const GroupConrol = () => {
+const GroupControl = () => {
 	return (
 		<div>
-
+			Group Control
 		</div>
 	)
 }
 
-export default GroupConrol
+export default GroupControl
