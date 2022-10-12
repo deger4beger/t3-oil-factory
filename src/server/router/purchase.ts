@@ -12,15 +12,12 @@ export const purchaseRouter = createProtectedRouter()
 			name: z.string(),
 			price: z.number(),
 			count: z.number(),
-			date: z.date(),
+			createdAt: z.date(),
 		}),
 		async resolve({ input, ctx }) {
 			const purchase = await ctx.prisma.purchase.create({
 				data: {
-					name: input.name,
-					price: input.price,
-					count: input.count,
-					createdAt: input.date,
+					...input,
 					userId: ctx.session.user.id
 				},
 			});
