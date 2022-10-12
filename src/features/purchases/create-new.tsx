@@ -19,6 +19,12 @@ const CreateNewPurchase = ({
 		createdAt: ""
 	})
 	const { mutate, isLoading } = trpc.useMutation(["purchase.create"])
+	const { data: purchaseNames } = trpc.useQuery(["purchase.getAll"], {
+		select(data) {
+		  return data.map(purchase => purchase.name)
+		},
+		refetchOnWindowFocus: false
+	})
 	const utils = trpc.useContext()
 
 	const onSetPurchasePayload = (field: keyof typeof purchasePayload) => (value: string) => {
@@ -65,6 +71,7 @@ const CreateNewPurchase = ({
 					title="Название закупки"
 					value={ purchasePayload.name }
 					onChange={ onSetPurchasePayload("name") }
+					datalist={ purchaseNames }
 				/>
 				<InputDatalist
 					title="Стоимость"
