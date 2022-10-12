@@ -7,7 +7,7 @@ const InputDatalist = ({
 	onChange,
 	datalist
 }: {
-	title: string
+	title?: string
 	type?: string
 	value: string | number
 	onChange: (value: string) => void
@@ -15,9 +15,9 @@ const InputDatalist = ({
 }) => {
 	return (
 		<>
-			<h1 className="text-sm text-zinc-600">
+			{title && <h1 className="text-sm text-zinc-600">
 				{ title }
-			</h1>
+			</h1> }
 			<input
 				type={ type }
 				value={ value }

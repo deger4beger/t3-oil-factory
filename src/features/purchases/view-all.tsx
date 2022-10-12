@@ -1,4 +1,5 @@
 import React from "react"
+import ControlPanel from "../../components/control-panel"
 import { trpc } from "../../utils/trpc"
 
 const ViewAll = () => {
@@ -6,10 +7,13 @@ const ViewAll = () => {
 	const { data, isLoading, isFetching } = trpc.useQuery(["purchase.getAll"])
 
 	return (
-		<div>
-			{ isLoading && <p>Загрузка...</p> }
-			{ isFetching && <p>Обновление...</p> }
-			<div className="flex flex-wrap">
+		<div className="mt-4">
+			<ControlPanel
+				totalItemsCount={data?.length || 0}
+				isFetchingStatus={isFetching}
+				isLoadingStatus={isLoading}
+			/>
+			<div className="flex flex-wrap mt-4 p-2">
 				{ data?.map(purchase =>
 					<div key={purchase.id}>
 						{ purchase.name }
