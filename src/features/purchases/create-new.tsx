@@ -19,6 +19,7 @@ const CreateNewPurchase = ({
 		createdAt: ""
 	})
 	const { mutate, isLoading } = trpc.useMutation(["purchase.create"])
+	const utils = trpc.useContext()
 
 	const onSetPurchasePayload = (field: keyof typeof purchasePayload) => (value: string) => {
 		setPurchasePayload({
@@ -42,6 +43,7 @@ const CreateNewPurchase = ({
 					count: 0,
 					createdAt: ""
 				})
+				utils.invalidateQueries(["purchase.getAll"])
 			}
 		})
 	}

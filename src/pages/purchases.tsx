@@ -4,13 +4,12 @@ import GroupControl from "../components/group-control"
 import PageShell from "../components/page-shell"
 import Button from "../components/button"
 import CreateNewPurchase from "../features/purchases/create-new"
-import { trpc } from "../utils/trpc"
+import ViewAll from "../features/purchases/view-all"
 
 
 const Purchases: NextPage = () => {
 
 	const [isCreatingNewPurchase, setIsCreatingNewPurchase] = useState(false)
-	const { data, isLoading, isFetching } = trpc.useQuery(["purchase.getAll"])
 
 	return (
 		<PageShell title="Закупки" isProtected>
@@ -25,9 +24,7 @@ const Purchases: NextPage = () => {
 				isCreatingNewPurchase={isCreatingNewPurchase}
 				setIsCreatingNewPurchase={setIsCreatingNewPurchase}
 			/>
-			{ isLoading && <p>Загрузка...</p> }
-			{ isFetching && <p>Обновление...</p> }
-			{ JSON.stringify(data) }
+			<ViewAll />
 		</PageShell>
 	)
 }
