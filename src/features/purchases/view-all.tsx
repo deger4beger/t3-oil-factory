@@ -15,10 +15,11 @@ const ViewAll = () => {
 				isLoadingStatus={isLoading}
 			/>
 			<div className="flex flex-wrap mt-4 p-2">
-				{ data?.map(purchase =>
+				{ data?.map((purchase, id) =>
 					<RecordCard
-						key={purchase.id}
-						{...purchase}
+						key={ purchase.id }
+						index={ id }
+						{ ...purchase }
 					/>
 				) }
 			</div>
