@@ -54,3 +54,13 @@ model VerificationToken {
 }
 
 // Custom models
+
+model Purchase {
+    id          String   @id @default(cuid())
+    name        String
+    price       Float
+    count       Int
+    createdAt   DateTime
+    updatedAt   DateTime @updatedAt
+}
+
