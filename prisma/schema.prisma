@@ -43,6 +43,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    purchases     Purchase[]
 }
 
 model VerificationToken {
@@ -57,10 +58,12 @@ model VerificationToken {
 
 model Purchase {
     id          String   @id @default(cuid())
+    userId      String
     name        String
     price       Float
     count       Int
     createdAt   DateTime
     updatedAt   DateTime @updatedAt
+    user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
