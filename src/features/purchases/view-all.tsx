@@ -1,11 +1,12 @@
 import React from "react"
 import ControlPanel from "../../components/control-panel"
+import RecordCard from "../../components/record-card"
 import { trpc } from "../../utils/trpc"
 
 const ViewAll = () => {
 
 	const { data, isLoading, isFetching } = trpc.useQuery(["purchase.getAll"])
-
+	console.log(data)
 	return (
 		<div className="mt-4">
 			<ControlPanel
@@ -15,9 +16,10 @@ const ViewAll = () => {
 			/>
 			<div className="flex flex-wrap mt-4 p-2">
 				{ data?.map(purchase =>
-					<div key={purchase.id}>
-						{ purchase.name }
-					</div>
+					<RecordCard
+						key={purchase.id}
+						{...purchase}
+					/>
 				) }
 			</div>
 		</div>

@@ -4,7 +4,9 @@ import { createProtectedRouter } from "./context";
 export const purchaseRouter = createProtectedRouter()
 	.query("getAll", {
 		async resolve({ ctx }) {
-			return await ctx.prisma.purchase.findMany();
+			return await ctx.prisma.purchase.findMany({
+				include: { user: { select: { name: true } } }
+			});
 		}
 	})
 	.mutation("create", {
