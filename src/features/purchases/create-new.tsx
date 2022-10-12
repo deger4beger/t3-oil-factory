@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Modal from "../../components/modal"
 import Button from "../../components/button"
 import InputDatalist from "../../components/input-datalist"
+import { trpc } from '../../utils/trpc'
 
 const CreateNewPurchase = ({
 	isCreatingNewPurchase,
@@ -13,10 +14,11 @@ const CreateNewPurchase = ({
 
 	const [purchasePayload, setPurchasePayload] = useState({
 		name: "",
-		price: "",
-		count: "",
+		price: 0,
+		count: 0,
 		createdAt: ""
 	})
+	const { mutate, isLoading } = trpc.useMutation(["purchase.create"])
 
 	const onSetPurchasePayload = (field: keyof typeof purchasePayload) => (value: string) => {
 		setPurchasePayload({
@@ -26,7 +28,22 @@ const CreateNewPurchase = ({
 	}
 
 	const onCreateNewPurchase = () => {
-		console.log(purchasePayload)
+		mutate({
+			...purchasePayload,
+			price: Number(purchasePayload.price),
+			count: Number(purchasePayload.count),
+			createdAt: new Date(purchasePayload.createdAt)
+		}, {
+			onSuccess: () => {
+				setIsCreatingNewPurchase(false)
+				setPurchasePayload({
+					name: "",
+					price: 0,
+					count: 0,
+					createdAt: ""
+				})
+			}
+		})
 	}
 
 	return (
@@ -38,6 +55,7 @@ const CreateNewPurchase = ({
 					<Button
 						text="Подтвердить"
 						onClick={ onCreateNewPurchase }
+						isLoading={ isLoading }
 					/>
 				}
 			>
@@ -48,11 +66,13 @@ const CreateNewPurchase = ({
 				/>
 				<InputDatalist
 					title="Стоимость"
+					type="number"
 					value={ purchasePayload.price }
 					onChange={ onSetPurchasePayload("price") }
 				/>
 				<InputDatalist
 					title="Количество"
+					type="number"
 					value={ purchasePayload.count }
 					onChange={ onSetPurchasePayload("count") }
 				/>

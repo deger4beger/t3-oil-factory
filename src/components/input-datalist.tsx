@@ -9,7 +9,7 @@ const InputDatalist = ({
 }: {
 	title: string
 	type?: string
-	value: string
+	value: string | number
 	onChange: (value: string) => void
 	datalist?: string[]
 }) => {
