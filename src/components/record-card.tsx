@@ -15,11 +15,11 @@ const RecordCard = ({
 	createdAt: Date
 	index: number
 }) => {
-	const styles = "font-semibold text-zinc-400 mr-2"
+	const styles = "font-semibold text-zinc-400 mr-2 border-b-2 border-zinc-800"
 	const styles2 = "flex justify-between"
 	return (
 		<div className="flex flex-col justify-between text-zinc-200 border-4 border-zinc-700 p-4 m-2 flex-grow rounded-lg">
-			<div className="inline-flex font-semibold text-base mb-2 border-b-2 border-zinc-800">Заказ № { index + 1 }</div>
+			<div className="inline-flex font-semibold text-base mb-2">Закупка № { index + 1 }</div>
 			<div className={ styles2 }><span className={ styles }>Название:</span>{ name }</div>
 			<div className={ styles2 }><span className={ styles }>Автор:</span>{ user.name }</div>
 			<div className={ styles2 }><span className={ styles }>Цена:</span>{ price }</div>
