@@ -8,12 +8,12 @@ const Button = ({
 }: {
 	onClick?: () => void;
 	text: string;
-	style?: "light" | "standard"
+	style?: "light" | "standard" | "dark"
 	isLoading?: boolean;
 }) => {
 
 	const styles = style === "light" ? "bg-zinc-300 text-zinc-900" :
-		"bg-zinc-700 border-zinc-600"
+		style === "dark" ? "bg-zinc-800 border-zinc-700" : "bg-zinc-700 border-zinc-600"
 
 	return (
 		<button

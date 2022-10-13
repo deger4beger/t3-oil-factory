@@ -21,7 +21,7 @@ const CreateNewPurchase = ({
 	const { mutate, isLoading } = trpc.useMutation(["purchase.create"])
 	const { data: purchaseNames } = trpc.useQuery(["purchase.getAll"], {
 		select(data) {
-		  return data.map(purchase => purchase.name)
+		  return data.map(purchase => purchase.name).filter((v, i, a) => a.indexOf(v) === i)
 		},
 		refetchOnWindowFocus: false
 	})

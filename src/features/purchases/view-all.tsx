@@ -6,7 +6,7 @@ import { trpc } from "../../utils/trpc"
 const ViewAll = () => {
 
 	const { data, isLoading, isFetching } = trpc.useQuery(["purchase.getAll"])
-	console.log(data)
+
 	return (
 		<div className="mt-4">
 			<ControlPanel
