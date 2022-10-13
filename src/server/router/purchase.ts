@@ -26,3 +26,32 @@ export const purchaseRouter = createProtectedRouter()
 			return purchase;
 		}
 	})
+	.mutation("update", {
+		input: z.object({
+			id: z.string().optional(),
+			name: z.string().optional(),
+			price: z.number().optional(),
+			count: z.number().optional(),
+			createdAt: z.date().optional(),
+		}),
+		async resolve({ input: { id, ...payload }, ctx }) {
+			const purchase = await ctx.prisma.purchase.update({
+				where: {
+					id: id
+				},
+				data: payload
+			});
+			return purchase;
+		}
+	})
+	.mutation("delete", {
+		input: z.object({
+			id: z.string()
+		}),
+		async resolve({ ctx, input: { id } }) {
+			await ctx.prisma.purchase.delete({
+				where: { id }
+			})
+			return null
+		}
+	})
