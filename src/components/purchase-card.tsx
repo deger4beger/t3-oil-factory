@@ -1,7 +1,7 @@
 import React from "react"
 import Button from "./button"
 
-const RecordCard = ({
+const PurchaseCard = ({
 	name,
 	price,
 	count,
@@ -24,7 +24,7 @@ const RecordCard = ({
 				Закупка № { index + 1 }
 				<div className="text-xs">
 					<Button text="Удалить" style="dark" />&nbsp;&nbsp;
-					<Button  text="Изменить" />
+					<Button text="Изменить" />
 				</div>
 			</div>
 			<div className={ styles2 }><span className={ styles }>Название:</span>{ name }</div>
@@ -37,4 +37,4 @@ const RecordCard = ({
 	)
 }
 
-export default RecordCard
+export default PurchaseCard
