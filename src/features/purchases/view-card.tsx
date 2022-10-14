@@ -1,7 +1,7 @@
 import React from "react"
-import Button from "./button"
+import Button from "../../components/button"
 
-const PurchaseCard = ({
+const ViewCard = ({
 	name,
 	price,
 	count,
@@ -37,4 +37,4 @@ const PurchaseCard = ({
 	)
 }
 
-export default PurchaseCard
+export default ViewCard

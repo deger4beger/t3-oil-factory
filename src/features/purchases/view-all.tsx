@@ -1,7 +1,7 @@
 import React from "react"
 import ControlPanel from "../../components/control-panel"
-import PurchaseCard from "../../components/purchase-card"
 import { trpc } from "../../utils/trpc"
+import ViewCard from "./view-card"
 
 const ViewAll = () => {
 
@@ -16,7 +16,7 @@ const ViewAll = () => {
 			/>
 			<div className="flex flex-wrap mt-4 p-2">
 				{ data?.map((purchase, id) =>
-					<PurchaseCard
+					<ViewCard
 						key={ purchase.id }
 						index={ id }
 						{ ...purchase }
