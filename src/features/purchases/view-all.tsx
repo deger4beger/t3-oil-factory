@@ -14,7 +14,7 @@ const ViewAll = () => {
 				isFetchingStatus={isFetching}
 				isLoadingStatus={isLoading}
 			/>
-			<div className="flex flex-wrap mt-4 p-2">
+			<div className="flex flex-wrap mt-4 p-2 max-w-6xl">
 				{ data?.map((purchase, id) =>
 					<ViewCard
 						key={ purchase.id }

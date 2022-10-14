@@ -28,7 +28,7 @@ const ViewCard = ({
 		<div className="flex flex-col justify-between text-zinc-200 border-4 border-zinc-700 p-4 m-2 flex-grow rounded-xl">
 			<div className="inline-flex font-semibold text-base mb-2 items-center justify-between">
 				Закупка № { index + 1 }
-				<div className="text-xs">
+				<div className="text-xs ml-4">
 					<Button text="Удалить" style="dark" />&nbsp;&nbsp;
 					<Button text="Изменить" />
 				</div>

@@ -16,10 +16,10 @@ const MutateForm = ({
 	onMutatePurchase: () => void,
 	isLoading: boolean,
 	purchasePayload: {
-		name?: string,
-		price?: number,
-		count?: number,
-		createdAt?: string
+		name: string,
+		price: number,
+		count: number,
+		createdAt: string
 	},
 	onSetPurchasePayload: (field: keyof typeof purchasePayload) => (value: string) => void,
 	purchaseNames?: string[]
