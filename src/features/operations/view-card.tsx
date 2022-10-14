@@ -9,7 +9,8 @@ const ViewCard = ({
 	count,
 	user,
 	createdAt,
-	index
+	index,
+	operation
 }: {
 	id: string
 	name: string
@@ -18,6 +19,7 @@ const ViewCard = ({
 	user: { name: string | null }
 	createdAt: Date
 	index: number
+	operation: "PURCHASE" | "SALE"
 }) => {
 
 	const utils = trpc.useContext()
@@ -37,9 +39,13 @@ const ViewCard = ({
 	const styles2 = "flex justify-between"
 
 	return (
-		<div className="flex flex-col justify-between text-zinc-200 border-4 border-zinc-700 p-4 m-2 flex-grow rounded-xl">
+		<div className={ "flex flex-col justify-between text-zinc-200 border-4 border-zinc-700 p-4 m-2 flex-grow rounded-xl" + ( operation === "SALE" ? " bg-zinc-800" : "" ) }>
 			<div className="inline-flex font-semibold text-base mb-2 items-center justify-between">
-				Операция № { index + 1 }
+				<div>
+					Операция № { index + 1 } <span className="text-xs text-zinc-300">
+						({ operation === "PURCHASE" ? "Покупка" : "Продажа" })
+					</span>
+				</div>
 				<div className="text-xs ml-4">
 					<Button
 						text="Удалить"
