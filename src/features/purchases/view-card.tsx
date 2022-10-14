@@ -1,5 +1,6 @@
 import React from "react"
 import Button from "../../components/button"
+import { trpc } from "../../utils/trpc"
 
 const ViewCard = ({
 	name,
@@ -16,8 +17,13 @@ const ViewCard = ({
 	createdAt: Date
 	index: number
 }) => {
+
+	const { mutateAsync: updatePurchase } = trpc.useMutation(["purchase.update"])
+	const { mutateAsync: deletePurchase } = trpc.useMutation(["purchase.delete"])
+
 	const styles = "font-semibold text-zinc-400 mr-2 border-b-2 border-zinc-800"
 	const styles2 = "flex justify-between"
+
 	return (
 		<div className="flex flex-col justify-between text-zinc-200 border-4 border-zinc-700 p-4 m-2 flex-grow rounded-xl">
 			<div className="inline-flex font-semibold text-base mb-2 items-center justify-between">

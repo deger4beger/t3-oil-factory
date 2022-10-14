@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
-import Modal from "../../components/modal"
-import Button from "../../components/button"
-import InputDatalist from "../../components/input-datalist"
+import React, { useState } from "react"
+import MutateForm from "./mutate-form"
 import { trpc } from '../../utils/trpc'
 
 const CreateNewPurchase = ({
@@ -55,43 +53,15 @@ const CreateNewPurchase = ({
 	}
 
 	return (
-		<Modal
-				showModal={isCreatingNewPurchase}
-				setShowModal={setIsCreatingNewPurchase}
-				title="Оформление новой закупки"
-				successBtn={
-					<Button
-						text="Подтвердить"
-						onClick={ onCreateNewPurchase }
-						isLoading={ isLoading }
-					/>
-				}
-			>
-				<InputDatalist
-					title="Название закупки"
-					value={ purchasePayload.name }
-					onChange={ onSetPurchasePayload("name") }
-					datalist={ purchaseNames }
-				/>
-				<InputDatalist
-					title="Стоимость"
-					type="number"
-					value={ purchasePayload.price }
-					onChange={ onSetPurchasePayload("price") }
-				/>
-				<InputDatalist
-					title="Количество"
-					type="number"
-					value={ purchasePayload.count }
-					onChange={ onSetPurchasePayload("count") }
-				/>
-				<InputDatalist
-					title="Дата"
-					value={ purchasePayload.createdAt }
-					onChange={ onSetPurchasePayload("createdAt") }
-					type="date"
-				/>
-			</Modal>
+		<MutateForm
+			isCreatingNewPurchase={isCreatingNewPurchase}
+			setIsCreatingNewPurchase={setIsCreatingNewPurchase}
+			onMutatePurchase={onCreateNewPurchase}
+			isLoading={isLoading}
+			purchasePayload={purchasePayload}
+			onSetPurchasePayload={onSetPurchasePayload}
+			purchaseNames={purchaseNames}
+		/>
 	)
 }
 
