@@ -1,10 +1,10 @@
 import { z } from "zod";
 import { createProtectedRouter } from "./context";
 
-export const purchaseRouter = createProtectedRouter()
+export const operationRouter = createProtectedRouter()
 	.query("getAll", {
 		async resolve({ ctx }) {
-			return await ctx.prisma.purchase.findMany({
+			return await ctx.prisma.operation.findMany({
 				include: { user: { select: { name: true } } }
 			});
 		}
@@ -15,9 +15,10 @@ export const purchaseRouter = createProtectedRouter()
 			price: z.number(),
 			count: z.number(),
 			createdAt: z.date(),
+			operation: z.enum(["PURCHASE", "SALE"])
 		}),
 		async resolve({ input, ctx }) {
-			const purchase = await ctx.prisma.purchase.create({
+			const purchase = await ctx.prisma.operation.create({
 				data: {
 					...input,
 					userId: ctx.session.user.id
@@ -32,10 +33,11 @@ export const purchaseRouter = createProtectedRouter()
 			name: z.string().optional(),
 			price: z.number().optional(),
 			count: z.number().optional(),
+			opreation: z.enum(["PURCHASE", "SALE"]).optional(),
 			createdAt: z.date().optional(),
 		}),
 		async resolve({ input: { id, ...payload }, ctx }) {
-			const purchase = await ctx.prisma.purchase.update({
+			const purchase = await ctx.prisma.operation.update({
 				where: {
 					id: id
 				},
@@ -49,7 +51,7 @@ export const purchaseRouter = createProtectedRouter()
 			id: z.string()
 		}),
 		async resolve({ ctx, input: { id } }) {
-			await ctx.prisma.purchase.delete({
+			await ctx.prisma.operation.delete({
 				where: { id }
 			})
 			return null

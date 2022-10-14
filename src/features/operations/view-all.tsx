@@ -5,7 +5,7 @@ import ViewCard from "./view-card"
 
 const ViewAll = () => {
 
-	const { data, isLoading, isFetching } = trpc.useQuery(["purchase.getAll"])
+	const { data, isLoading, isFetching } = trpc.useQuery(["operation.getAll"])
 
 	return (
 		<div className="mt-4">

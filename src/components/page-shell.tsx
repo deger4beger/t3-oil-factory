@@ -6,8 +6,7 @@ import { useRouter } from "next/router";
 
 const routes = [
 	{ name: "Домашняя страница", route: "/" },
-	{ name: "Закупки", route: "/purchases" },
-	{ name: "Продажи", route: "/sales" },
+	{ name: "Операции", route: "/operations" },
 	{ name: "Статистика", route: "/statistics" }
 ]
 

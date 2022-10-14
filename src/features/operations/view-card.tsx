@@ -3,6 +3,7 @@ import Button from "../../components/button"
 import { trpc } from "../../utils/trpc"
 
 const ViewCard = ({
+	id,
 	name,
 	price,
 	count,
@@ -10,6 +11,7 @@ const ViewCard = ({
 	createdAt,
 	index
 }: {
+	id: string
 	name: string
 	price: number
 	count: number
@@ -18,8 +20,18 @@ const ViewCard = ({
 	index: number
 }) => {
 
-	const { mutateAsync: updatePurchase } = trpc.useMutation(["purchase.update"])
-	const { mutateAsync: deletePurchase } = trpc.useMutation(["purchase.delete"])
+	const utils = trpc.useContext()
+	const onSuccess = () => {
+		utils.invalidateQueries(["operation.getAll"])
+	}
+	const {
+		mutate: update,
+		isLoading: updateLoading
+	} = trpc.useMutation(["operation.update"], { onSuccess })
+	const {
+		mutate: deleteOne,
+		isLoading: deleteLoading
+	} = trpc.useMutation(["operation.delete"], { onSuccess })
 
 	const styles = "font-semibold text-zinc-400 mr-2 border-b-2 border-zinc-800"
 	const styles2 = "flex justify-between"
@@ -27,9 +39,14 @@ const ViewCard = ({
 	return (
 		<div className="flex flex-col justify-between text-zinc-200 border-4 border-zinc-700 p-4 m-2 flex-grow rounded-xl">
 			<div className="inline-flex font-semibold text-base mb-2 items-center justify-between">
-				Закупка № { index + 1 }
+				Операция № { index + 1 }
 				<div className="text-xs ml-4">
-					<Button text="Удалить" style="dark" />&nbsp;&nbsp;
+					<Button
+						text="Удалить"
+						style="dark"
+						onClick={ () => deleteOne({ id }) }
+						isLoading={ deleteLoading }
+					/>&nbsp;&nbsp;
 					<Button text="Изменить" />
 				</div>
 			</div>

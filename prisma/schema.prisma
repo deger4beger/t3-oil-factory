@@ -43,7 +43,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    purchases     Purchase[]
+    purchases     Operation[]
 }
 
 model VerificationToken {
@@ -56,12 +56,18 @@ model VerificationToken {
 
 // Custom models
 
-model Purchase {
+enum OperationType {
+    PURCHASE
+    SALE
+}
+
+model Operation {
     id          String   @id @default(cuid())
     userId      String
     name        String
     price       Float
     count       Int
+    operation   OperationType
     createdAt   DateTime
     updatedAt   DateTime @updatedAt
     user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
