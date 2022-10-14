@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import MutateForm from "./mutate-form"
 import { trpc } from '../../utils/trpc'
 
-const CreateNewOperation = ({
+const CreateNew = ({
 	isCreatingNew,
 	setIsCreatingNew,
 	operationType
@@ -21,13 +21,16 @@ const CreateNewOperation = ({
 	const { mutate, isLoading } = trpc.useMutation(["operation.create"])
 	const { data: namesList } = trpc.useQuery(["operation.getAll"], {
 		select(data) {
-		  return data.map(purchase => purchase.name).filter((v, i, a) => a.indexOf(v) === i)
+		  return data
+		  	.filter(operation => operation.operation === operationType)
+		  	.map(operation => operation.name)
+		  	.filter((v, i, a) => a.indexOf(v) === i)
 		},
 		refetchOnWindowFocus: false
 	})
 	const utils = trpc.useContext()
 
-	const onSetPurchasePayload = (field: keyof typeof payload) => (value: string) => {
+	const onSetPayload = (field: keyof typeof payload) => (value: string) => {
 		setPayload({
 			...payload,
 			[field]: value
@@ -62,10 +65,10 @@ const CreateNewOperation = ({
 			onMutate={onCreateNew}
 			isLoading={ isLoading }
 			payload={ payload }
-			onSetPayload={onSetPurchasePayload}
+			onSetPayload={ onSetPayload }
 			namesList={ namesList }
 		/>
 	)
 }
 
-export default CreateNewOperation
+export default CreateNew
