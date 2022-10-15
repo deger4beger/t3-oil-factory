@@ -5,7 +5,11 @@ import ViewCard from "./view-card"
 
 const ViewAll = () => {
 
-	const { data, isLoading, isFetching } = trpc.useQuery(["operation.getAll"])
+	const { data, isLoading, isFetching } = trpc.useQuery(["operation.getAll"], {
+		onSuccess(data) {
+			return data.reverse()
+		}
+	})
 
 	return (
 		<div className="mt-4">

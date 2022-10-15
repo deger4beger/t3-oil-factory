@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import Button from "../../components/button"
 import { trpc } from "../../utils/trpc"
+import MutateForm from "./mutate-form"
 
 const ViewCard = ({
 	id,
@@ -22,12 +23,17 @@ const ViewCard = ({
 	operation: "PURCHASE" | "SALE"
 }) => {
 
+	const [data, setData] = useState({
+		name, price, count, createdAt
+	})
+	const [isUpdating, setIsUpdating] = useState(false)
+
 	const utils = trpc.useContext()
 	const onSuccess = () => {
 		utils.invalidateQueries(["operation.getAll"])
 	}
 	const {
-		mutate: update,
+		mutateAsync: update,
 		isLoading: updateLoading
 	} = trpc.useMutation(["operation.update"], { onSuccess })
 	const {
@@ -37,6 +43,18 @@ const ViewCard = ({
 
 	const styles = "font-semibold text-zinc-400 mr-2 border-b-2 border-zinc-800"
 	const styles2 = "flex justify-between"
+
+	const onSetData = (field: keyof typeof data) => (value: string) => {
+		setData({
+			...data,
+			[field]: value
+		})
+	}
+
+	const onMutate = async () => {
+		await update(data)
+		setIsUpdating(false)
+	}
 
 	return (
 		<div className={ "flex flex-col justify-between text-zinc-200 border-4 border-zinc-700 p-4 m-2 flex-grow rounded-xl" + ( operation === "SALE" ? " bg-zinc-800" : "" ) }>
@@ -53,7 +71,7 @@ const ViewCard = ({
 						onClick={ () => deleteOne({ id }) }
 						isLoading={ deleteLoading }
 					/>&nbsp;&nbsp;
-					<Button text="Изменить" />
+					<Button text="Изменить" onClick={ () => setIsUpdating(true) } />
 				</div>
 			</div>
 			<div className={ styles2 }><span className={ styles }>Название:</span>{ name }</div>
@@ -62,6 +80,14 @@ const ViewCard = ({
 			<div className={ styles2 }><span className={ styles }>Количество:</span>{ count }</div>
 			<div className={ styles2 }><span className={ styles }>Общая цена:</span>{ count * price }</div>
 			<div className={ styles2 }><span className={ styles }>Дата оформления:</span>{ createdAt.toLocaleDateString() }</div>
+			<MutateForm
+				isCreatingNew={ isUpdating }
+				setIsCreatingNew={ setIsUpdating }
+				onMutate={ onMutate }
+				isLoading={ updateLoading }
+				onSetPayload={ onSetData }
+				payload={ data }
+			/>
 		</div>
 	)
 }
