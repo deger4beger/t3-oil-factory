@@ -93,7 +93,7 @@ const ViewCard = ({
 				onSetPayload={ onSetData }
 				payload={{
 					...data,
-					createdAt: typeof data.createdAt === "string" ? data.createdAt : data.createdAt.toString()
+					createdAt: typeof data.createdAt === "string" ? new Date(data.createdAt) : data.createdAt as any
 				}}
 			/>
 		</div>
