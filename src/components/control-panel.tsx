@@ -12,7 +12,7 @@ const ControlPanel = ({
 	return (
 		<div className="inline-flex justify-end pb-2 items-center text-zinc-400 font-semibold">
 			<div className="mr-6 pl-2">Найдено элементов - { totalItemsCount }</div>
-			<div>{ isFetchingStatus && <p>Синхронизация...</p> }</div>
+			<div>{ isFetchingStatus && !isLoadingStatus && <p>Синхронизация...</p> }</div>
 			<div>{ isLoadingStatus && <p>Загрузка данных...</p> }</div>
 		</div>
 	)
