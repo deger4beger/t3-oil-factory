@@ -86,7 +86,10 @@ const ViewCard = ({
 				onMutate={ onMutate }
 				isLoading={ updateLoading }
 				onSetPayload={ onSetData }
-				payload={ data }
+				payload={{
+					...data,
+					createdAt: typeof data.createdAt === "string" ? data.createdAt : data.createdAt.toString()
+				}}
 			/>
 		</div>
 	)
