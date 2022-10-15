@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import { trpc } from "../../utils/trpc"
 import ControlPanel from "../../components/control-panel"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 import ViewCard from "./view-card"
 import { useRouter } from "next/router"
 import Paginator from "../../components/paginator"
 
 const ViewAll = () => {
 
+	const [animationParent] = useAutoAnimate()
 	const router = useRouter()
 	const [filter, setFilter] = useState({
 		page: Number(router.query.page) || 1
@@ -14,7 +16,7 @@ const ViewAll = () => {
 	const { data, isLoading, isFetching, refetch } = trpc.useQuery([
 		"operation.getAll", {
 			page: filter.page,
-			take: 10
+			take: 2
 		}
 	], {
 		onSuccess(data) {
@@ -51,7 +53,7 @@ const ViewAll = () => {
 				isFetchingStatus={isFetching}
 				isLoadingStatus={isLoading}
 			/>
-			<div className="flex flex-wrap mt-4 p-2 max-w-6xl">
+			<div className="flex flex-wrap mt-4 p-2 max-w-6xl" ref={ animationParent as any }>
 				{ data?.operations.map((purchase, id) =>
 					<ViewCard
 						key={ purchase.id }
@@ -63,8 +65,8 @@ const ViewAll = () => {
 			<div className="flex justify-center mt-4">
 				<Paginator
 					currentPage={ filter.page }
-					pageSize={ 10 }
-					portionSize={ 10 }
+					pageSize={ 2 }
+					portionSize={ 5 }
 					totalCount={ data?.totalCount || 0 }
 					onPageChanged={ onPageChange }
 				/>

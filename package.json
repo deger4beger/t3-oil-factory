@@ -14,6 +14,7 @@
     "db:sync": "yarn db:postinstall & yarn db:push"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.3",
     "@next-auth/prisma-adapter": "^1.0.4",
     "@prisma/client": "^4.3.1",
     "@trpc/client": "^9.27.2",
