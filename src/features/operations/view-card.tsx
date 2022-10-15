@@ -50,9 +50,14 @@ const ViewCard = ({
 			[field]: value
 		})
 	}
-
 	const onMutate = async () => {
-		await update(data)
+		await update({
+			...data,
+			id,
+			price: Number(data.price),
+			count: Number(data.count),
+			createdAt: new Date(data.createdAt)
+		})
 		setIsUpdating(false)
 	}
 
