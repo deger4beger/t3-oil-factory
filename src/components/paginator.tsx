@@ -27,16 +27,16 @@ const Paginator = ({
 	const rightPortionPageNumber = portionNumber * portionSize
 
 	return (
-	<div className="flex items-center justify-center">
+	<div className="flex items-center justify-center border-t-2 border-zinc-800 w-full mt-2">
 		<div>
 			{ portionNumber > 1 &&
-			<button onClick={ () => {setPortionNumber(portionNumber - 1)}} className="font-semibold">PREV</button>}
+			<button onClick={ () => {setPortionNumber(portionNumber - 1)}} className="font-bold">←</button>}
 		</div>
-		<div className="flex items-center h-[70px]">
+		<div className="flex items-center h-[60px]">
 			{pages
 				.filter(p => p>= leftPortionPageNumber && p <= rightPortionPageNumber)
 				.map( p => <span
-					className={currentPage === p ? "font-semibold" : "font-normal"}
+					className={"px-3 py-1 text-xl cursor-pointer text-zinc-400" + (currentPage === p ? " bg-zinc-800 text-zinc-50" : "")}
 					key={p}
 					onClick={ () => {onPageChanged(p) }}>
 						{p}
@@ -45,7 +45,7 @@ const Paginator = ({
 		</div>
 		<div>
 			{ portionCount > portionNumber &&
-			<button onClick={ () => {setPortionNumber(portionNumber + 1)}} className="font-semibold">NEXT</button>}
+			<button onClick={ () => {setPortionNumber(portionNumber + 1)}} className="font-bold">→</button>}
 		</div>
 	</div>
 	)

@@ -10,7 +10,6 @@ const ViewCard = ({
 	count,
 	user,
 	createdAt,
-	index,
 	operation
 }: {
 	id: string
@@ -19,7 +18,6 @@ const ViewCard = ({
 	count: number
 	user: { name: string | null }
 	createdAt: Date
-	index: number
 	operation: "PURCHASE" | "SALE"
 }) => {
 
@@ -65,7 +63,7 @@ const ViewCard = ({
 		<div className={ "flex flex-col justify-between text-zinc-200 border-4 border-zinc-700 p-4 m-2 flex-grow rounded-xl" + ( operation === "SALE" ? " bg-zinc-800" : "" ) }>
 			<div className="inline-flex font-semibold text-base mb-2 items-center justify-between">
 				<div>
-					Операция № { id } <span className="text-xs text-zinc-300">
+					Операция от { createdAt.toLocaleDateString()  } <span className="text-xs text-zinc-300">
 						({ operation === "PURCHASE" ? "Покупка" : "Продажа" })
 					</span>
 				</div>

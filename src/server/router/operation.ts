@@ -16,9 +16,9 @@ export const operationRouter = createProtectedRouter()
 			const totalCount = await ctx.prisma.operation.count();
 			const totalPages = totalCount / input.take;
 			const uniqueNames = (await ctx.prisma.operation.findMany({
-				select: { name: true },
+				select: { name: true, operation: true },
 				distinct: ["name"],
-			})).map((item) => item.name);
+			}));
 			return {
 				operations: current,
 				totalCount,

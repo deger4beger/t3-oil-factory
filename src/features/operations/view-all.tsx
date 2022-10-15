@@ -10,13 +10,14 @@ const ViewAll = () => {
 
 	const [animationParent] = useAutoAnimate()
 	const router = useRouter()
+	const take = 6
 	const [filter, setFilter] = useState({
 		page: Number(router.query.page) || 1
 	})
-	const { data, isLoading, isFetching, refetch } = trpc.useQuery([
+	const { data, isLoading, isFetching } = trpc.useQuery([
 		"operation.getAll", {
-			page: filter.page,
-			take: 2
+			...filter,
+			take: take
 		}
 	], {
 		onSuccess(data) {
@@ -25,7 +26,6 @@ const ViewAll = () => {
 				operations: data.operations.reverse()
 			}
 		},
-		enabled: false,
 		keepPreviousData: true
 	})
 
@@ -42,9 +42,9 @@ const ViewAll = () => {
 		})
 	}
 
-	useEffect(() => {
-		!!filter.page && refetch()
-	}, [filter, refetch])
+	// useEffect(() => {
+	// 	!!filter.page && refetch()
+	// }, [filter, refetch])
 
 	return (
 		<div className="mt-4">
@@ -54,23 +54,20 @@ const ViewAll = () => {
 				isLoadingStatus={isLoading}
 			/>
 			<div className="flex flex-wrap mt-4 p-2 max-w-6xl" ref={ animationParent as any }>
-				{ data?.operations.map((purchase, id) =>
+				{ data?.operations.map(purchase =>
 					<ViewCard
 						key={ purchase.id }
-						index={ id }
 						{ ...purchase }
 					/>
 				) }
 			</div>
-			<div className="flex justify-center mt-4">
-				<Paginator
-					currentPage={ filter.page }
-					pageSize={ 2 }
-					portionSize={ 5 }
-					totalCount={ data?.totalCount || 0 }
-					onPageChanged={ onPageChange }
-				/>
-			</div>
+			<Paginator
+				currentPage={ filter.page }
+				pageSize={ take }
+				portionSize={ 2 }
+				totalCount={ data?.totalCount || 0 }
+				onPageChanged={ onPageChange }
+			/>
 		</div>
 	)
 }

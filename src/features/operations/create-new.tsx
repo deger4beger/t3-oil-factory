@@ -22,6 +22,8 @@ const CreateNew = ({
 	const { data: namesList } = trpc.useQuery(["operation.getAll", { take: 1, page: 1 }], {
 		refetchOnWindowFocus: false,
 		select: (data) => data.uniqueNames
+			.filter(operation => operation.operation === operationType)
+			.map(operation => operation.name)
 	})
 	const utils = trpc.useContext()
 
@@ -42,12 +44,12 @@ const CreateNew = ({
 		}, {
 			onSuccess: () => {
 				setIsCreatingNew(false)
-				setPayload({
-					name: "",
-					price: 0,
-					count: 0,
-					createdAt: ""
-				})
+				// setPayload({
+				// 	name: "",
+				// 	price: 0,
+				// 	count: 0,
+				// 	createdAt: ""
+				// })
 				utils.invalidateQueries(["operation.getAll"])
 			}
 		})
