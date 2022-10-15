@@ -5,6 +5,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react"
 import ViewCard from "./view-card"
 import { useRouter } from "next/router"
 import Paginator from "../../components/paginator"
+import InputDatalist from "../../components/input-datalist"
 
 const ViewAll = () => {
 
@@ -48,7 +49,14 @@ const ViewAll = () => {
 				totalItemsCount={data?.totalCount || 0}
 				isFetchingStatus={isFetching}
 				isLoadingStatus={isLoading}
-			/>
+			>
+				<InputDatalist
+					style="dark"
+					title="Название операции"
+					value={"21"}
+					onChange={() => void 0}
+				/>
+			</ControlPanel>
 			<div className="flex flex-wrap mt-4 p-2 max-w-6xl" ref={ animationParent as any }>
 				{ data?.operations.map(purchase =>
 					<ViewCard
