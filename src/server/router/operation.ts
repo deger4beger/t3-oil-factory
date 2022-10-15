@@ -3,10 +3,28 @@ import { createProtectedRouter } from "./context";
 
 export const operationRouter = createProtectedRouter()
 	.query("getAll", {
-		async resolve({ ctx }) {
-			return await ctx.prisma.operation.findMany({
-				include: { user: { select: { name: true } } }
+		input: z.object({
+			page: z.number(),
+			take: z.number(),
+		}),
+		async resolve({ ctx, input }) {
+			const current = await ctx.prisma.operation.findMany({
+				include: { user: { select: { name: true } } },
+				skip: input.take * (input.page - 1),
+				take: input.take,
 			});
+			const totalCount = await ctx.prisma.operation.count();
+			const totalPages = totalCount / input.take;
+			const uniqueNames = (await ctx.prisma.operation.findMany({
+				select: { name: true },
+				distinct: ["name"],
+			})).map((item) => item.name);
+			return {
+				operations: current,
+				totalCount,
+				totalPages,
+				uniqueNames
+			}
 		}
 	})
 	.mutation("create", {

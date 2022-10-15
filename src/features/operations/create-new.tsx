@@ -19,14 +19,9 @@ const CreateNew = ({
 		createdAt: ""
 	})
 	const { mutate, isLoading } = trpc.useMutation(["operation.create"])
-	const { data: namesList } = trpc.useQuery(["operation.getAll"], {
-		select(data) {
-		  return data
-		  	.filter(operation => operation.operation === operationType)
-		  	.map(operation => operation.name)
-		  	.filter((v, i, a) => a.indexOf(v) === i)
-		},
-		refetchOnWindowFocus: false
+	const { data: namesList } = trpc.useQuery(["operation.getAll", { take: 1, page: 1 }], {
+		refetchOnWindowFocus: false,
+		select: (data) => data.uniqueNames
 	})
 	const utils = trpc.useContext()
 
