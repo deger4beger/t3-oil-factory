@@ -57,7 +57,7 @@ const ViewAll = () => {
 					onChange={() => void 0}
 				/>
 			</ControlPanel>
-			<div className="flex flex-wrap mt-4 p-2 max-w-6xl" ref={ animationParent as any }>
+			<div className="flex flex-wrap p-2 max-w-6xl" ref={ animationParent as any }>
 				{ data?.operations.map(purchase =>
 					<ViewCard
 						key={ purchase.id }
