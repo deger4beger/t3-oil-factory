@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { trpc } from "../../utils/trpc"
 import ControlPanel from "../../components/control-panel"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
@@ -42,10 +42,6 @@ const ViewAll = () => {
 		})
 	}
 
-	// useEffect(() => {
-	// 	!!filter.page && refetch()
-	// }, [filter, refetch])
-
 	return (
 		<div className="mt-4">
 			<ControlPanel
@@ -64,7 +60,7 @@ const ViewAll = () => {
 			<Paginator
 				currentPage={ filter.page }
 				pageSize={ take }
-				portionSize={ 2 }
+				portionSize={ 4 }
 				totalCount={ data?.totalCount || 0 }
 				onPageChanged={ onPageChange }
 			/>
