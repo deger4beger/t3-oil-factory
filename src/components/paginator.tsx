@@ -27,10 +27,10 @@ const Paginator = ({
 	const rightPortionPageNumber = portionNumber * portionSize
 
 	return (
-	<div className="flex items-center justify-center border-t-2 border-zinc-800 w-full mt-2">
+	<div className="flex items-center justify-center border-t-2 border-zinc-800 w-full mt-4">
 		<div>
 			{ portionNumber > 1 &&
-			<button onClick={ () => {setPortionNumber(portionNumber - 1)}} className="font-bold">←</button>}
+			<button onClick={ () => {setPortionNumber(portionNumber - 1)}} className="font-bold mr-2">←</button>}
 		</div>
 		<div className="flex items-center h-[60px]">
 			{pages
@@ -45,7 +45,7 @@ const Paginator = ({
 		</div>
 		<div>
 			{ portionCount > portionNumber &&
-			<button onClick={ () => {setPortionNumber(portionNumber + 1)}} className="font-bold">→</button>}
+			<button onClick={ () => {setPortionNumber(portionNumber + 1)}} className="font-bold ml-4">→</button>}
 		</div>
 	</div>
 	)
