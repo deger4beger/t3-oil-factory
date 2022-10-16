@@ -6,19 +6,23 @@ export const operationRouter = createProtectedRouter()
 		input: z.object({
 			page: z.number(),
 			take: z.number(),
+			name: z.string().optional(),
 		}),
 		async resolve({ ctx, input }) {
 			const current = await ctx.prisma.operation.findMany({
+				where: { name: { contains: input.name ?? "", mode: "insensitive" } },
 				include: { user: { select: { name: true } } },
 				skip: input.take * (input.page - 1),
 				take: input.take,
 			});
-			const totalCount = await ctx.prisma.operation.count();
+			const totalCount = await ctx.prisma.operation.count({
+				where: { name: { contains: input.name ?? "", mode: "insensitive" } },
+			});
 			const totalPages = totalCount / input.take;
-			const uniqueNames = (await ctx.prisma.operation.findMany({
+			const uniqueNames = await ctx.prisma.operation.findMany({
 				select: { name: true, operation: true },
 				distinct: ["name"],
-			}));
+			});
 			return {
 				operations: current,
 				totalCount,
