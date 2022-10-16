@@ -13,11 +13,11 @@ const ViewAll = () => {
 	const [animationParent] = useAutoAnimate()
 	const router = useRouter()
 	const take = 6
-
 	const [filter, setFilter] = useState({
 		page: Number(router.query.page) || 1,
 		name: router.query.name as string || ""
 	})
+
 	const { data, isLoading, isFetching } = trpc.useQuery([
 		"operation.getAll", {
 			...filter,
@@ -34,16 +34,20 @@ const ViewAll = () => {
 		keepPreviousData: true
 	})
 
-	const updateFilter = (value: Partial<typeof filter>) => {
+	const updateFilter = (values: Partial<typeof filter>) => {
+		const filters = {
+			...values,
+			page: values.page || 1
+		}
 		router.push({
 			query: {
 				...router.query,
-				...value
+				...filters
 			}
 		})
 		setFilter({
 			...filter,
-			...value
+			...filters
 		})
 	}
 
