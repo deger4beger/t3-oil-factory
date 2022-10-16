@@ -6,7 +6,7 @@ import ViewCard from "./view-card"
 import { useRouter } from "next/router"
 import Paginator from "../../components/paginator"
 import InputDatalist from "../../components/input-datalist"
-import { useDebouncedState } from "../../hooks/use-debounced-state"
+import { useDebouncedValue } from "../../hooks/use-debounced-state"
 
 const ViewAll = () => {
 
@@ -21,7 +21,7 @@ const ViewAll = () => {
 	const { data, isLoading, isFetching } = trpc.useQuery([
 		"operation.getAll", {
 			...filter,
-			name: useDebouncedState(filter.name, 500),
+			name: useDebouncedValue(filter.name, 500),
 			take: take
 		}
 	], {

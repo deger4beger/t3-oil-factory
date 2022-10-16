@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Button from "../../components/button"
+import { dateEuToUs } from "../../utils/date-eu-us"
 import { trpc } from "../../utils/trpc"
 import MutateForm from "./mutate-form"
 
@@ -91,7 +92,7 @@ const ViewCard = ({
 				onSetPayload={ onSetData }
 				payload={{
 					...data,
-					createdAt: typeof data.createdAt === "string" ? data.createdAt : data.createdAt.toLocaleDateString()
+					createdAt: typeof data.createdAt === "string" ? data.createdAt : dateEuToUs(data.createdAt)
 				}}
 			/>
 		</div>

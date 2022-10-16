@@ -24,7 +24,7 @@ const MutateForm = ({
 	onSetPayload: (field: keyof typeof payload) => (value: string) => void,
 	namesList?: string[]
 }) => {
-
+	console.log(payload.createdAt)
 	return (
 		<Modal
 				showModal={ isCreatingNew }
