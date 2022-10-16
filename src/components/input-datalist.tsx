@@ -16,7 +16,7 @@ const InputDatalist = ({
 	style?: "dark" | "light"
 }) => {
 	return (
-		<>
+		<div className="flex flex-col">
 			{title && <h1 className={"text-sm mb-1" + (style==="dark" ? " text-zinc-400" : " text-zinc-600")}>
 				{ title }
 			</h1> }
@@ -34,7 +34,7 @@ const InputDatalist = ({
 			    	{ datalist.map(data => <option value={ data } key={ data } /> ) }
 		    	</datalist>
 		    ) }
-		</>
+		</div>
 	)
 }
 

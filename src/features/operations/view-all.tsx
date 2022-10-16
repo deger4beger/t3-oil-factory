@@ -12,6 +12,7 @@ const ViewAll = () => {
 	const [animationParent] = useAutoAnimate()
 	const router = useRouter()
 	const take = 6
+
 	const [filter, setFilter] = useState({
 		page: Number(router.query.page) || 1
 	})
