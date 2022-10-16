@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { LegacyRef, useState } from "react"
 import { trpc } from "../../utils/trpc"
 import ControlPanel from "../../components/control-panel"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
@@ -65,7 +65,10 @@ const ViewAll = () => {
 					onChange={ (name) => updateFilter({ name }) }
 				/>
 			</ControlPanel>
-			<div className="flex flex-wrap p-2 max-w-6xl" ref={ animationParent as any }>
+			<div
+				className="flex flex-wrap p-2 max-w-6xl"
+				ref={ animationParent as LegacyRef<HTMLDivElement> }
+			>
 				{ data?.operations.map(purchase =>
 					<ViewCard
 						key={ purchase.id }
