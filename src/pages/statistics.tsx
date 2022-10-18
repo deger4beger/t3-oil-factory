@@ -40,7 +40,7 @@ const Statistics: NextPage = () => {
 					/>
 				</div>
 			</ControlPanel>
-			<Common />
+			<Common { ...data } />
 		</PageShell>
 	)
 }

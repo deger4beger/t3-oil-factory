@@ -7,11 +7,11 @@ const Common = ({
 	salesPrice,
 	outcome,
 }: {
-	purchasesCount: number
-	purchasesPrice: number
-	salesCount: number
-	salesPrice: number
-	outcome: number
+	purchasesCount?: number
+	purchasesPrice?: number
+	salesCount?: number
+	salesPrice?: number
+	outcome?: number
 }) => {
 	return (
 		<div className="mt-2">
