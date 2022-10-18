@@ -1,8 +1,20 @@
 import React from 'react'
 
-const Common = () => {
+const Common = ({
+	purchasesCount,
+	purchasesPrice,
+	salesCount,
+	salesPrice,
+	outcome,
+}: {
+	purchasesCount: number
+	purchasesPrice: number
+	salesCount: number
+	salesPrice: number
+	outcome: number
+}) => {
 	return (
-		<div>
+		<div className="mt-2">
 			common
 		</div>
 	)
