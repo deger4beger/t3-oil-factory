@@ -27,7 +27,7 @@ const InputDatalist = ({
 				name="name"
 				list="purchase-name"
 				placeholder="..."
-				className={"border-b-2 border-zinc-600 text-zinc-900 px-2 text-base mb-4 w-11/12" + (style==="dark" ? " bg-zinc-900 text-zinc-50" : " bg-zinc-300")}
+				className={"border-b-2 border-zinc-600 text-zinc-900 px-2 text-base mb-4 w-full" + (style==="dark" ? " bg-zinc-900 text-zinc-50" : " bg-zinc-300")}
 			/>
 		    { datalist && (
 		    	<datalist id="purchase-name">
