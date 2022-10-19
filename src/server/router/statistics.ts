@@ -1,5 +1,9 @@
 import { createProtectedRouter } from "./context";
 
+const operationKeys = {
+	"SALE": "продажи",
+	"PURCHASE": "закупки"
+}
 
 export const statisticsRouter = createProtectedRouter()
 	.query("getTotal", {
@@ -16,12 +20,27 @@ export const statisticsRouter = createProtectedRouter()
 				acc += sale.price
 			, 0)
 
-			const operationsByDate = await ctx.prisma.operation.groupBy({
+			const operationsByDate = (await ctx.prisma.operation.groupBy({
 				by: ["createdAt", "operation"],
 				_sum: {
 					price: true
 				}
-			})
+			})).map(operations => ({
+				date: operations.createdAt,
+				[operationKeys[operations.operation]]: operations._sum.price
+			})).reduce((acc, operations) => {
+				const existed = acc.find(operation =>
+					operation.date.toLocaleDateString() === operations.date.toLocaleDateString())
+				if (!existed) acc.push({
+					"закупки": 0,
+					"продажи": 0,
+					...operations
+				})
+				if (existed) {
+					Object.assign(existed, operations)
+				}
+				return acc
+			}, [] as any[])
 
 			return {
 				purchasesCount: purchases.length,
