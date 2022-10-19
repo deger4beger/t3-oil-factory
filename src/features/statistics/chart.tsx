@@ -1,46 +1,47 @@
-import React from 'react'
-import { Brush, CartesianGrid, Legend, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Brush, CartesianGrid, Legend, Line,
+	LineChart, ReferenceLine, ResponsiveContainer,
+Tooltip, XAxis, YAxis } from "recharts"
 
 const fakeData = [
   {
     date: "Дата 1",
-    purchase: 120000,
-    sale: 200000,
+    закупки: 120000,
+    продажи: 200000,
   },
   {
     date: "Дата 2",
-    purchase: 150000,
-    sale: 230000,
+    закупки: 150000,
+    продажи: 230000,
   },
   {
     date: "Дата 3",
-    purchase: 100000,
-    sale: 300000,
+    закупки: 100000,
+    продажи: 300000,
   },
   {
     date: "Дата 4",
-    purchase: 130000,
-    sale: 210000,
+    закупки: 130000,
+    продажи: 210000,
   },
   {
     date: "Дата 5",
-    purchase: 120000,
-    sale: 100000,
+    закупки: 120000,
+    продажи: 100000,
   },
   {
     date: "Дата 6",
-    purchase: 150000,
-    sale: 130000,
+    закупки: 150000,
+    продажи: 130000,
   },
   {
     date: "Дата 7",
-    purchase: 100000,
-    sale: 200000,
+    закупки: 100000,
+    продажи: 200000,
   },
   {
     date: "Дата 8",
-    purchase: 130000,
-    sale: 150000,
+    закупки: 130000,
+    продажи: 150000,
   },
 ];
 
@@ -78,12 +79,12 @@ const Chart = () => {
 	          strokeOpacity={0.6}
 	          alwaysShow
 	        />
-	        <Line yAxisId="price" type="monotone" dataKey="sale" stroke="#047857"
+	        <Line yAxisId="price" type="monotone" dataKey="продажи" stroke="#047857"
 	          dot={{ strokeWidth: 3, r: 4 }}
 	          strokeWidth={3}
 	          strokeOpacity={0.8}
 	        />
-	        <Line yAxisId="price" type="monotone" dataKey="purchase" stroke="#b91c1c"
+	        <Line yAxisId="price" type="monotone" dataKey="закупки" stroke="#b91c1c"
 	          dot={{ strokeWidth: 3, r: 4 }}
 	          strokeWidth={3}
 	          strokeOpacity={0.8}
