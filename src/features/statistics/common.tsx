@@ -12,7 +12,7 @@ const Common = ({
 	outcome?: number
 }) => {
 	return (
-		<div className="mt-2 font-semibold text-zinc-300 bg-zinc-800 p-2 rounded border-zinc-700 border-4">
+		<div className="m-4 font-semibold text-zinc-300 bg-zinc-800 p-2 rounded border-zinc-700 border-4">
 			<p className="flex justify-between items-center border-b-2 border-zinc-700 p-2 mb-2">
 				<span>Количество закупок</span>{ purchasesCount }
 			</p>

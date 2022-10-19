@@ -47,7 +47,7 @@ const fakeData = [
 
 const Chart = () => {
 	return (
-		<div className="border-4 border-zinc-700 bg-zinc-300 mt-6 p-6 rounded">
+		<div className="border-4 border-zinc-700 bg-zinc-300 m-4 mt-8 p-6 rounded">
 			<ResponsiveContainer width="100%" height={500}>
 	      <LineChart
 	        width={500}
