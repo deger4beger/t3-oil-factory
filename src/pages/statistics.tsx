@@ -4,6 +4,7 @@ import ControlPanel from "../components/control-panel"
 import GroupControl from "../components/group-control"
 import InputDatalist from "../components/input-datalist"
 import PageShell from "../components/page-shell"
+import Chart from "../features/statistics/chart"
 import Common from "../features/statistics/common"
 import { trpc } from "../utils/trpc"
 
@@ -41,6 +42,7 @@ const Statistics: NextPage = () => {
 				</div>
 			</ControlPanel>
 			<Common { ...data } />
+			<Chart />
 		</PageShell>
 	)
 }
