@@ -12,6 +12,7 @@ import { trpc } from "../utils/trpc"
 const Statistics: NextPage = () => {
 
 	const { data, isLoading, isFetching } = trpc.useQuery(["statistics.getTotal"])
+	console.log(data?.operationsByDate)
 
 	return (
 		<PageShell title="Статистика" isProtected>

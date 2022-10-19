@@ -15,12 +15,21 @@ export const statisticsRouter = createProtectedRouter()
 			const salesPrice = sales.reduce((acc, sale) =>
 				acc += sale.price
 			, 0)
+
+			const operationsByDate = await ctx.prisma.operation.groupBy({
+				by: ["createdAt", "operation"],
+				_sum: {
+					price: true
+				}
+			})
+
 			return {
 				purchasesCount: purchases.length,
 				purchasesPrice,
 				salesCount: sales.length,
 				salesPrice,
-				outcome: salesPrice - purchasesPrice
+				outcome: salesPrice - purchasesPrice,
+				operationsByDate
 			}
 		}
 	})

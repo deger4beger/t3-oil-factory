@@ -69,7 +69,7 @@ const Chart = () => {
 	          strokeDasharray="3 3"
 	          strokeWidth={2}
 	          strokeOpacity={0.6}
-	          alwaysShow
+	          ifOverflow="extendDomain"
 	        />
 	        <ReferenceLine y={200000} // средняя покупка
 	          stroke="green"
@@ -77,7 +77,7 @@ const Chart = () => {
 	          strokeDasharray="3 3"
 	          strokeWidth={2}
 	          strokeOpacity={0.6}
-	          alwaysShow
+	          ifOverflow="extendDomain"
 	        />
 	        <Line yAxisId="price" type="monotone" dataKey="продажи" stroke="#047857"
 	          dot={{ strokeWidth: 3, r: 4 }}
