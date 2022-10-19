@@ -26,11 +26,11 @@ export const statisticsRouter = createProtectedRouter()
 					price: true
 				}
 			})).map(operations => ({
-				date: operations.createdAt,
+				date: operations.createdAt.toLocaleDateString(),
 				[operationKeys[operations.operation]]: operations._sum.price
 			})).reduce((acc, operations) => {
 				const existed = acc.find(operation =>
-					operation.date.toLocaleDateString() === operations.date.toLocaleDateString())
+					operation.date === operations.date)
 				if (!existed) acc.push({
 					"закупки": 0,
 					"продажи": 0,
@@ -40,7 +40,11 @@ export const statisticsRouter = createProtectedRouter()
 					Object.assign(existed, operations)
 				}
 				return acc
-			}, [] as any[])
+			}, [] as {
+				date: string
+				"закупки": number
+				"продажи": number
+			}[])
 
 			return {
 				purchasesCount: purchases.length,
