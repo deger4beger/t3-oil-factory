@@ -12,21 +12,21 @@ import { trpc } from "../utils/trpc";
 const Statistics: NextPage = () => {
 	const router = useRouter();
 
-	const [date, setDate] = useState({
-		from: router.query.from
-			? new Date(router.query.from as string)
-			: new Date(),
-		to: router.query.to
-			? new Date(router.query.to as string)
-			: new Date(),
+	const [date, setDate] = useState({ ...router.query } as {
+		from: string;
+		to: string;
 	});
+	console.log(router, date)
 	const { data, isLoading, isFetching } = trpc.useQuery([
 		"statistics.getTotal",
-		date,
+		( date.from && date.to ) ? {
+			from: new Date(date.from),
+			to: new Date(date.to),
+		} : {},
 	]);
 	const { operationsByDate, ...commonData } = data || {};
 
-	const onSetDate = (value: { from?: Date; to?: Date }) => {
+	const onSetDate = (value: { from?: string; to?: string }) => {
 		setDate({
 			...date,
 			...value,
@@ -35,8 +35,8 @@ const Statistics: NextPage = () => {
 			query: {
 				...router.query,
 				...{
-					from: value.from?.toLocaleDateString(),
-					to: value.to?.toLocaleDateString(),
+					from: value.from,
+					to: value.to,
 				},
 			},
 		});
@@ -44,7 +44,7 @@ const Statistics: NextPage = () => {
 
 	return (
 		<PageShell title="Статистика" isProtected>
-			<GroupControl title="Статистика за выбранные даты"></GroupControl>
+			<GroupControl title="Статистика за выбранные даты" />
 			<ControlPanel
 				totalItemsCount={(data?.purchasesCount || 0) + (data?.salesCount || 0)}
 				isLoadingStatus={isLoading}
@@ -55,16 +55,16 @@ const Statistics: NextPage = () => {
 						type="date"
 						style="dark"
 						title="Выберите период"
-						value={""}
-						onChange={(date) => onSetDate({ from: date as any })}
+						value={ date.from }
+						onChange={ (selectedDate) => onSetDate({ from: selectedDate }) }
 					/>
 					<span> - </span>
 					<InputDatalist
 						type="date"
 						style="dark"
 						title="..."
-						value={""}
-						onChange={(date) => onSetDate({ to: date as any })}
+						value={ date.to }
+						onChange={ (selectedDate) => onSetDate({ to: selectedDate }) }
 					/>
 				</div>
 			</ControlPanel>
