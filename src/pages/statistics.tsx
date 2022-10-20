@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ControlPanel from "../components/control-panel";
 import GroupControl from "../components/group-control";
 import InputDatalist from "../components/input-datalist";
@@ -12,11 +12,11 @@ import { trpc } from "../utils/trpc";
 const Statistics: NextPage = () => {
 	const router = useRouter();
 
-	const [date, setDate] = useState({ ...router.query } as {
-		from: string;
-		to: string;
+	const [date, setDate] = useState({
+		from: "",
+		to: "",
 	});
-	console.log(router, date)
+	console.log(date)
 	const { data, isLoading, isFetching } = trpc.useQuery([
 		"statistics.getTotal",
 		( date.from && date.to ) ? {
@@ -27,20 +27,20 @@ const Statistics: NextPage = () => {
 	const { operationsByDate, ...commonData } = data || {};
 
 	const onSetDate = (value: { from?: string; to?: string }) => {
-		setDate({
-			...date,
-			...value,
-		});
 		router.push({
 			query: {
-				...router.query,
-				...{
-					from: value.from,
-					to: value.to,
-				},
+				from: value.from || date.from,
+				to: value.to || date.to,
 			},
 		});
 	};
+
+	useEffect(() => {
+		setDate({
+			...date,
+			...router.query,
+		});
+	}, [router.query])
 
 	return (
 		<PageShell title="Статистика" isProtected>
