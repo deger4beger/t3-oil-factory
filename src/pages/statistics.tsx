@@ -10,13 +10,13 @@ import Common from "../features/statistics/common";
 import { trpc } from "../utils/trpc";
 
 const Statistics: NextPage = () => {
-	const router = useRouter();
 
+	const router = useRouter();
 	const [date, setDate] = useState({
 		from: "",
 		to: "",
 	});
-	console.log(date)
+
 	const { data, isLoading, isFetching } = trpc.useQuery([
 		"statistics.getTotal",
 		( date.from && date.to ) ? {

@@ -16,3 +16,7 @@
     background-color: #27272a;
     border-radius: 40px;
 }
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(35%);
+}
