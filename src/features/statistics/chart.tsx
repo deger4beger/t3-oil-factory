@@ -1,5 +1,5 @@
 import { Brush, CartesianGrid, Legend, Line,
-	LineChart, ReferenceLine, ResponsiveContainer,
+	LineChart, ResponsiveContainer,
 Tooltip, XAxis, YAxis } from "recharts"
 
 const Chart = ({ data }: { data: {
@@ -24,22 +24,6 @@ const Chart = ({ data }: { data: {
 	        />
 	        <Tooltip />
 	        <Legend iconType="rect" />
-	        <ReferenceLine y={140000} // средняя покупка
-	          stroke="red"
-	          yAxisId="price"
-	          strokeDasharray="3 3"
-	          strokeWidth={2}
-	          strokeOpacity={0.6}
-	          ifOverflow="extendDomain"
-	        />
-	        <ReferenceLine y={200000} // средняя покупка
-	          stroke="green"
-	          yAxisId="price"
-	          strokeDasharray="3 3"
-	          strokeWidth={2}
-	          strokeOpacity={0.6}
-	          ifOverflow="extendDomain"
-	        />
 	        <Line yAxisId="price" type="monotone" dataKey="продажи" stroke="#047857"
 	          dot={{ strokeWidth: 3, r: 4 }}
 	          strokeWidth={3}

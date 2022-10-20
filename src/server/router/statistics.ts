@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { createProtectedRouter } from "./context";
 
 const operationKeys = {
@@ -7,8 +8,19 @@ const operationKeys = {
 
 export const statisticsRouter = createProtectedRouter()
 	.query("getTotal", {
-		async resolve({ ctx }) {
-			const operations = await ctx.prisma.operation.findMany()
+		input: z.object({
+			from: z.date().optional(),
+			to: z.date().optional(),
+		}),
+		async resolve({ ctx, input }) {
+			const operations = await ctx.prisma.operation.findMany({
+				where: {
+					createdAt: {
+						gte: input.from,
+						lte: input.to
+					}
+				}
+			})
 			const purchases = operations.filter(operation =>
 				operation.operation === "PURCHASE")
 			const sales = operations.filter(operation =>
@@ -21,6 +33,12 @@ export const statisticsRouter = createProtectedRouter()
 			, 0)
 
 			const operationsByDate = (await ctx.prisma.operation.groupBy({
+				where: {
+					createdAt: {
+						gte: input.from,
+						lte: input.to
+					}
+				},
 				by: ["createdAt", "operation"],
 				_sum: {
 					price: true

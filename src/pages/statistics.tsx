@@ -1,5 +1,6 @@
 import { NextPage } from "next";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import ControlPanel from "../components/control-panel";
 import GroupControl from "../components/group-control";
 import InputDatalist from "../components/input-datalist";
@@ -9,11 +10,37 @@ import Common from "../features/statistics/common";
 import { trpc } from "../utils/trpc";
 
 const Statistics: NextPage = () => {
+	const router = useRouter();
 
+	const [date, setDate] = useState({
+		from: router.query.from
+			? new Date(router.query.from as string)
+			: new Date(),
+		to: router.query.to
+			? new Date(router.query.to as string)
+			: new Date(),
+	});
 	const { data, isLoading, isFetching } = trpc.useQuery([
 		"statistics.getTotal",
+		date,
 	]);
 	const { operationsByDate, ...commonData } = data || {};
+
+	const onSetDate = (value: { from?: Date; to?: Date }) => {
+		setDate({
+			...date,
+			...value,
+		});
+		router.push({
+			query: {
+				...router.query,
+				...{
+					from: value.from?.toLocaleDateString(),
+					to: value.to?.toLocaleDateString(),
+				},
+			},
+		});
+	};
 
 	return (
 		<PageShell title="Статистика" isProtected>
@@ -29,7 +56,7 @@ const Statistics: NextPage = () => {
 						style="dark"
 						title="Выберите период"
 						value={""}
-						onChange={() => void 0}
+						onChange={(date) => onSetDate({ from: date as any })}
 					/>
 					<span> - </span>
 					<InputDatalist
@@ -37,7 +64,7 @@ const Statistics: NextPage = () => {
 						style="dark"
 						title="..."
 						value={""}
-						onChange={() => void 0}
+						onChange={(date) => onSetDate({ to: date as any })}
 					/>
 				</div>
 			</ControlPanel>
