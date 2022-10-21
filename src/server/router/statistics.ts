@@ -39,6 +39,9 @@ export const statisticsRouter = createProtectedRouter()
 						lte: input.to
 					}
 				},
+				orderBy: {
+					createdAt: "asc"
+				},
 				by: ["createdAt", "operation"],
 				_sum: {
 					price: true
