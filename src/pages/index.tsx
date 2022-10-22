@@ -1,14 +1,13 @@
 import type { NextPage } from "next";
 import PageShell from "../components/page-shell";
+import FrontInfo from "../features/home/front-info";
 
 
 const Home: NextPage = () => {
 
   return (
     <PageShell title="Домашняя страница">
-      {/*
-        ## TODO: Some bright description, video demo, link to auth and use app
-      */}
+      <FrontInfo />
     </PageShell>
   );
 };
