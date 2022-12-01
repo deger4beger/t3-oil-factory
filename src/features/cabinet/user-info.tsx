@@ -1,10 +1,8 @@
-import { useSession } from "next-auth/react"
-import Image from "next/image"
-
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 const UserInfo = () => {
-
-	const { data } = useSession()
+	const { data } = useSession();
 
 	return (
 		<div className="flex flex-col items-center">
@@ -13,15 +11,16 @@ const UserInfo = () => {
 					src={data?.user?.image || ""}
 					alt="Не удалось загрузить изображение профиля"
 					layout="fill"
-  				objectFit="cover"
-  				className="rounded-full"
+					objectFit="cover"
+					className="rounded-full"
 				/>
 			</div>
 			<p className="mt-4 text-zinc-300 text-xl">
-				{data?.user?.name} <span className="text-zinc-400">({data?.user?.email})</span>
+				{data?.user?.name}{" "}
+				<span className="text-zinc-400">({data?.user?.email})</span>
 			</p>
 		</div>
-	)
-}
+	);
+};
 
-export default UserInfo
+export default UserInfo;
