@@ -7,7 +7,7 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-// Necessary for Next auth
+// Necessary for Next-auth
 model Account {
     id                String  @id @default(cuid())
     userId            String
@@ -54,7 +54,6 @@ model VerificationToken {
 }
 
 // Custom models
-
 enum OperationType {
     PURCHASE
     SALE
