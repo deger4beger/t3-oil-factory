@@ -5,7 +5,6 @@ import Button from "./button";
 import { useRouter } from "next/router";
 
 const routes = [
-	// { name: "Домашняя страница", route: "/" },
 	{ name: "Операции", route: "/operations" },
 	{ name: "Статистика", route: "/statistics" }
 ]
