@@ -5,28 +5,26 @@ const Modal = ({
   setShowModal,
   title,
   children,
-  successBtn
+  successBtn,
 }: {
-  showModal: boolean
-  setShowModal: (isShown: boolean) => void
-  title: string
-  children: React.ReactNode
-  successBtn: React.ReactNode
+  showModal: boolean;
+  setShowModal: (isShown: boolean) => void;
+  title: string;
+  children: React.ReactNode;
+  successBtn: React.ReactNode;
 }) => {
   return (
     <>
       {showModal ? (
         <>
-          <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-          >
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-zinc-300 outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-zinc-400 rounded-t">
                   <h3 className="text-xl font-semibold text-zinc-900">
-                    { title }
+                    {title}
                   </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -40,7 +38,7 @@ const Modal = ({
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <p className="text-slate-500 text-lg leading-relaxed">
-                    { children }
+                    {children}
                   </p>
                 </div>
                 {/*footer*/}
@@ -52,7 +50,7 @@ const Modal = ({
                   >
                     Отменить
                   </button>
-                  { successBtn }
+                  {successBtn}
                 </div>
               </div>
             </div>
@@ -62,6 +60,6 @@ const Modal = ({
       ) : null}
     </>
   );
-}
+};
 
-export default Modal
+export default Modal;
