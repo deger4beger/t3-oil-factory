@@ -20,8 +20,8 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       httpOptions: {
         timeout: 40000,
-      }
-    })
+      },
+    }),
   ],
 };
 
