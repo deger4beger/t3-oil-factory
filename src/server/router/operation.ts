@@ -27,9 +27,9 @@ export const operationRouter = createProtectedRouter()
 				operations: current,
 				totalCount,
 				totalPages,
-				uniqueNames
-			}
-		}
+				uniqueNames,
+			};
+		},
 	})
 	.mutation("create", {
 		input: z.object({
@@ -37,17 +37,17 @@ export const operationRouter = createProtectedRouter()
 			price: z.number(),
 			count: z.number(),
 			createdAt: z.date(),
-			operation: z.enum(["PURCHASE", "SALE"])
+			operation: z.enum(["PURCHASE", "SALE"]),
 		}),
 		async resolve({ input, ctx }) {
 			const purchase = await ctx.prisma.operation.create({
 				data: {
 					...input,
-					userId: ctx.session.user.id
+					userId: ctx.session.user.id,
 				},
 			});
 			return purchase;
-		}
+		},
 	})
 	.mutation("update", {
 		input: z.object({
@@ -61,21 +61,21 @@ export const operationRouter = createProtectedRouter()
 		async resolve({ input: { id, ...payload }, ctx }) {
 			const purchase = await ctx.prisma.operation.update({
 				where: {
-					id: id
+					id: id,
 				},
-				data: payload
+				data: payload,
 			});
 			return purchase;
-		}
+		},
 	})
 	.mutation("delete", {
 		input: z.object({
-			id: z.string()
+			id: z.string(),
 		}),
 		async resolve({ ctx, input: { id } }) {
 			await ctx.prisma.operation.delete({
-				where: { id }
-			})
-			return null
-		}
-	})
+				where: { id },
+			});
+			return null;
+		},
+	});
