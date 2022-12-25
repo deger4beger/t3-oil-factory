@@ -7,9 +7,9 @@ import { cabinetRouter } from "./cabinet";
 
 export const appRouter = createRouter()
   .transformer(superjson)
-    .merge("operation.", operationRouter)
-    .merge("statistics.", statisticsRouter)
-    .merge("cabinet.", cabinetRouter)
+  .merge("operation.", operationRouter)
+  .merge("statistics.", statisticsRouter)
+  .merge("cabinet.", cabinetRouter);
 
 // export type definition of API
 export type AppRouter = typeof appRouter;
