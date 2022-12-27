@@ -5,4 +5,4 @@ This is an app based on [init.tips](https://init.tips) stack, also known as the 
 - [Next-Auth.js](https://next-auth.js.org)
 - [Prisma](https://prisma.io)
 - [TailwindCSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io) (using @next version? [see v10 docs here](https://alpha.trpc.io))
+- [tRPC](https://trpc.io)
